@@ -10,24 +10,51 @@ This project aims to forecast ad impressions using machine learning techniques, 
 ## Access the Application
 - **Streamlit App**: [Click here](https://ad-impression-forecasting-and-anomaly-detection-e73eay74aqznj5.streamlit.app/)
 
-## Snowflake Setup
-This project follows the official Snowflake documentation for setting up the data warehouse and executing queries. The setup includes:
-- Creating a Snowflake **data warehouse** and configuring necessary compute resources.
-- Setting up **databases, schemas, and tables** for storing ad impression data.
-- Writing and executing **SQL queries** for data manipulation and retrieval.
-- Utilizing Snowflake’s **forecasting and anomaly detection** ML features.
+## Snowflake Setup 
+Followed along [this documnetation](https://quickstarts.snowflake.com/guide/predict_ad_impressions_with_ml_powered_analysis/index.html#1) provided by Snowflake to set up the snowflake account, role and data warehouse, schema.
+
+## Project Structure:
+```
+📦 Ad-Impression-Forecasting-and-Anomaly-Detection
+.gitignore
+├─ Data_Generation
+README.md
+├─ functions
+│  ├─ execute_query.py
+│  └─ read_query.py
+├─ pages
+│  ├─ 01_Forecast.py
+│  └─ 02_Anomaly.py
+├─ queries
+│  ├─ anomaly
+│  │  ├─ anomaly_call_script.sql
+│  │  └─ anomaly_model_script.sql
+│  ├─ data
+│  │  ├─ data_fetch_script.sql
+│  │  ├─ data_generation_script.sql
+│  │  ├─ delete_script.sql
+│  │  └─ trend_addition_script.sql
+│  └─ forecast
+│     ├─ forecast_call_script.sql
+│     └─ forecast_model_script.sql
+└─ requirements.txt
+```
 
 ## Pages Overview
 
 ### Page 1: Generate Data
 - Enter a date and specify the number of days to generate synthetic ad impression data.
 - Data is adjusted to reflect trends: an upward trend on weekdays and a downward trend on weekends.
+  ![Generate Data](images/img_01.png)
 
 ### Page 2: Forecasting Ad Impressions 📈
 - Train an ML model using the generated data to forecast future ad impressions.
 - Input the desired number of forecast days to receive predictions.
+  ![Forecasting](images/img_02.png)
+
 
 ### Page 3: Anomaly Detection
 - A Snowflake-ML model is trained to detect anomalies in ad impression volumes.
 - The model predicts whether an impression count for a given day is normal or an anomaly.
+  ![Anomaly Detection](images/img_03.png)
 
